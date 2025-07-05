@@ -11,15 +11,17 @@ def calculation_of_divisors(number: int):
 
 
 def solution(target_presents: int):
-    target = target_presents // 10
-    house_number = 1
-    while True:
-        divisors = calculation_of_divisors(house_number)
-        print(house_number, divisors)
-        if sum(divisors) == target:
-            return house_number
-        house_number += 1
+    for i in range(2, target_presents):
+        houses = [1, i]
+        presents = i
+        while presents < target_presents:
+            presents += i
+            houses.append(presents)
+        print(houses)
+        if sum(houses) == target_presents:
+
+            return 'Solve'
 
 
 if __name__ == '__main__':
-    print(solution(29000000))
+    print(solution(15))
