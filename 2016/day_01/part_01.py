@@ -1,0 +1,41 @@
+DIRECTIONS = 'NESW'
+MOVEMENTS = {
+    'N': {
+        'L': (-1, 0),
+        'R': (1, 0),
+    },
+    'E': {
+        'L': (0, -1),
+        'R': (0, 1),
+    },
+    'S': {
+        'L': (1, 0),
+        'R': (-1, 0),
+    },
+    'W': {
+        'L': (0, 1),
+        'R': (0, -1),
+    },
+}
+
+
+def read_data(path: str):
+    with open(path, 'r') as file:
+        data = file.read().split(', ')
+    return tuple(map(lambda x: (x[0], int(x[1:])), data))
+
+
+def solution(path: str):
+    road_map = read_data(path)
+    cur_dir, cur_x, cur_y = 'N', 0, 0
+    for direct, distance in road_map:
+        idx_direct = DIRECTIONS.index(cur_dir)
+        cur_dir = DIRECTIONS[(idx_direct + (1 if direct == 'R' else -1)) % len(DIRECTIONS)]
+        for i in range(distance):
+            cur_x += MOVEMENTS[cur_dir][direct][0]
+            cur_y += MOVEMENTS[cur_dir][direct][1]
+        print(direct, cur_dir, cur_x, cur_y)
+
+
+if __name__ == '__main__':
+    print(solution('test_data.txt'))
