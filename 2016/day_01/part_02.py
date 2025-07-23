@@ -43,15 +43,18 @@ def read_data(path: str):
 
 
 def solution(path: str):
+    visited = {(0, 0)}
     road_map = read_data(path)
     cur_dir, cur_x, cur_y = 'N', 0, 0
     for direct, distance in road_map:
-
         for i in range(distance):
             cur_x += MOVEMENTS[cur_dir][direct][0]
             cur_y += MOVEMENTS[cur_dir][direct][1]
+            if (cur_x, cur_y) in visited:
+                return abs(cur_x) + abs(cur_y)
+            visited.add((cur_x, cur_y))
         cur_dir = DIRECTIONS[cur_dir][direct]
-    return abs(cur_x) + abs(cur_y)
+
 
 
 if __name__ == '__main__':
