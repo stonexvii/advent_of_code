@@ -45,3 +45,4 @@ def solution(path: str) -> int:
 
 if __name__ == '__main__':
     print(solution('input_data.txt'))
+
