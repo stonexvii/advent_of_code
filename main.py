@@ -1,6 +1,5 @@
 import os
 
-
 solution_file = '''
 def read_data(path: str):
     with open(path, 'r') as file:
@@ -45,4 +44,4 @@ def create_files(work_dir):
 
 
 if __name__ == '__main__':
-    create_files(2021)
+    create_files(2025)
