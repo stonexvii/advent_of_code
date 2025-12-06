@@ -44,4 +44,4 @@ def create_files(work_dir):
 
 
 if __name__ == '__main__':
-    create_files(2021)
+    create_files(2020)
