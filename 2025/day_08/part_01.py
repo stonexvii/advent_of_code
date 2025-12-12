@@ -25,7 +25,7 @@ def solution(path: str):
                 min_distance.append((distance, key))
     min_distance = list(map(lambda x: x[1], sorted(set(min_distance))))
     chains = {}
-    for a_box, b_box in min_distance[:1000]:
+    for a_box, b_box in min_distance[:10]:
         a_chain, b_chain = {a_box}, {b_box}
         if chains:
             for idx, chain in chains.items():
@@ -38,9 +38,10 @@ def solution(path: str):
                     break
         idx = max(chains) + 1 if chains else 1
         chains[idx] = a_chain.union(b_chain)
+        print(a_box, b_box, chains)
 
     return reduce(mul, list(map(len, sorted(chains.values(), key=len, reverse=True)))[:3])
 
 
 if __name__ == '__main__':
-    print(solution('input_data.txt'))
+    print(solution('test_data.txt'))
